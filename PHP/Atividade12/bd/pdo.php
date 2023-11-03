@@ -1,6 +1,6 @@
 <?php
     $host = 'localhost';
-    $dbname = 'vitorhugo';
+    $dbname = 'rafaelmunarin';
     $user = 'postgres';
     $password = '1234';
 

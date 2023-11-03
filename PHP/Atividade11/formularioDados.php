@@ -12,13 +12,13 @@ if (isset($_SESSION['login']) && isset($_SESSION['senha']) && isset($_SESSION['i
 }
 
 if (isset($_SESSION['login']) && isset($_SESSION['tempoSessao'])) {
-    $tempoExpiracao = 10; 
+    $tempoTotal = 10; 
     $tempoDecorrido = time() - $_SESSION['tempoSessao'];
     
-    if ($tempoDecorrido > $tempoExpiracao) {
+    if ($tempoDecorrido > $tempoTotal) {
         echo "<script language='javascript' type='text/javascript'>alert('Sessão expirada. Por favor, faça o login novamente.'); window.location.href='formularioLogin.html';</script>";
     } else {
-        $tempoRestante = $tempoExpiracao - $tempoDecorrido;
+        $tempoRestante = $tempoTotal - $tempoDecorrido;
         echo 'Sessão ativa. Tempo restante: ' . gmdate('H:i:s', $tempoRestante);
     }
 } else {

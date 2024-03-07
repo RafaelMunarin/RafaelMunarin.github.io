@@ -24,8 +24,5 @@
         <br>
         <button type="submit" name="benviar" id="benviar">Enviar</button>
     </form>
-    <br>
-    Você também pode fazer REQUEST na URL:<br>
-    <a href="destino.php?nome=Sandro+Alencar+Fernandes&fone=(47)%2099968-9513&email=sandro@arealocal.com.br">destino.php?nome=Sandro+Alencar+Fernandes&fone=(47)%2099968-9513&email=sandro@arealocal.com.br</a>
 </body>
 </html>

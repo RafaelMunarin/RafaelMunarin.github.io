@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PW2 - Exemplo HTTP + PHP</title>
 </head>
+<!-- teste de ajuste do repositóio pelo vscode  -->
 <body>
     <h1>PW2 - Exemplo requisições HTTP + PHP - Response</h1>
     <hr>

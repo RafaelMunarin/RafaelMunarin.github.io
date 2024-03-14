@@ -29,6 +29,8 @@
 
 <?php
 
+require __DIR__ . '/vendor/autoload.php';
+
 use Monolog\Level;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;

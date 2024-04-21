@@ -1,13 +1,13 @@
 // Função para ordenar um array de objetos com base em um atributo específico
-function mergeSort(arrayQuickSort, atributo) {
+function mergeSort(arrayMergeSort, atributo) {
     // Caso base: se o array tiver tamanho 1 ou menos, está ordenado
-    if (arrayQuickSort.length <= 1) {
-        return arrayQuickSort;
+    if (arrayMergeSort.length <= 1) {
+        return arrayMergeSort;
     }
     // Divide o array ao meio
-    const meio = Math.floor(arrayQuickSort.length / 2); //Retorna o maior número menor ou igual a (array.length / 2)
-    const esquerda = arrayQuickSort.slice(0, meio); //Retorna um outro array tirando o elemento 0 e os elementos do meio (vou ter como retorno dois arrays)
-    const direita = arrayQuickSort.slice(meio); //Retorna um outro array tirando o elemento do meio (vou ter como retorno dois arrays)
+    const meio = Math.floor(arrayMergeSort.length / 2); //Retorna o maior número menor ou igual a (array.length / 2)
+    const esquerda = arrayMergeSort.slice(0, meio); //Retorna um outro array tirando o elemento 0 e os elementos do meio (vou ter como retorno dois arrays)
+    const direita = arrayMergeSort.slice(meio); //Retorna um outro array tirando o elemento do meio (vou ter como retorno dois arrays)
     // Aplica recursivamente o mergeSort nas sublistas esquerda e direita
     const esquerdaOrdenada = mergeSort(esquerda, atributo); //Usamos a função "esquerda" para ficar dividindo o array toda vez que for chamado e a função "atributo" é pelo o'que estamos ordenando o objeto dentro do array
     const direitaOrdenada = mergeSort(direita, atributo); //Usamos a função "direita" para ficar dividindo o array toda vez que for chamado e a função "atributo" é pelo o'que estamos ordenando o objeto dentro do array

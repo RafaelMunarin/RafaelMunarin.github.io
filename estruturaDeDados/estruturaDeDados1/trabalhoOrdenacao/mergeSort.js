@@ -5,16 +5,16 @@ function mergeSort(arrayMergeSort, atributo) {
         return arrayMergeSort
     }
     //Divide o array ao meio
-    const meio = Math.floor(arrayMergeSort.length / 2) //Retorna o maior número menor ou igual a (array.length / 2)
-    const esquerda = arrayMergeSort.slice(0, meio) //Retorna um outro array tirando o elemento 0 e os elementos do meio (vou ter como retorno dois arrays)
-    const direita = arrayMergeSort.slice(meio) //Retorna um outro array tirando o elemento do meio (vou ter como retorno dois arrays)
-    // Aplica recursivamente o mergeSort nas sublistas esquerda e direita
+    const meio = Math.floor(arrayMergeSort.length / 2) //Retorna o maior número menor ou igual a (array.length / 2) - encontro o ponto médio do array, mesmo os sub
+    const esquerda = arrayMergeSort.slice(0, meio) //Retorna um outro array que tem como inicio o nr da posição 0 e como final o meio do array original(vou ter como retorno dois arrays)
+    const direita = arrayMergeSort.slice(meio) //Retorna um outro array que tem como inicio o meio do array original e vai até o final do array (vou ter como retorno dois arrays)
+    // Aplica o mergeSort nas sublistas esquerda e direita
     const esquerdaOrdenada = mergeSort(esquerda, atributo) //Usamos a função "esquerda" para ficar dividindo o array toda vez que for chamado e a função "atributo" é pelo o'que estamos ordenando o objeto dentro do array
     const direitaOrdenada = mergeSort(direita, atributo) //Usamos a função "direita" para ficar dividindo o array toda vez que for chamado e a função "atributo" é pelo o'que estamos ordenando o objeto dentro do array
     // Combina as sublistas esquerda e direita ordenadamente
     return merge(esquerdaOrdenada, direitaOrdenada, atributo) //Retorno o resultado da função marge
 }
-//Função auxiliar para mesclar duas listas ordenadas em uma única lista ordenada
+//Função auxiliar para mesclar as listas ordenadas em uma única lista ordenada
 function merge(esquerda, direita, atributo) {
     let resultado = [] //Defino resultado como um array vazio
     let i = 0, j = 0 //Defino algumas variáveis de controle como = 0

@@ -34,7 +34,7 @@ const arrayMergeSort = [
     { nome: "Maria", idade: 30 },
     { nome: "Carlos", idade: 20 },
     { nome: "Ana", idade: 35 },
-];
+]
 const arrayDeNumerosOrdenadoMergeSort = mergeSort(arrayMergeSort, 'idade') //Defino qual o array que vai ser usado quando chamo a function MergeSort, no caso vou usar o array Pessoas e também passa qual o atributo vou usar para ordenar, no caso a Idade
 console.log('Array não ordenado', arrayMergeSort)
 console.log('Array ordenado', arrayDeNumerosOrdenadoMergeSort)

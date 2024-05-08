@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 19</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body{
+            background-color: white;
+        }   
+
+        .barra_cinza_topo{
+            width: auto;
+            height: 150px;
+            background-color:#DCDCDC;
+        }
+        .circulo_logo {
+            background: white;
+            border-radius: 50%;
+            width: 90px;
+            height: 90px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 30px;
+            right: 47%;
+        }
+
+        .circulo_logo p{
+            font-size: 30px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            color: #696969;
+        }
+
+        .barra_menu_estilo{
+            width: auto;
+            height:50px;
+            background-color:#808080;
+            text-align: center;
+
+        }
+
+        .barra_menu_estilo ul{
+            list-style: none;
+        }
+
+        .barra_menu_estilo ul li {
+            display: inline; 
+            text-align: center;   
+        }
+
+        .barra_menu_estilo ul li a{
+            text-decoration: none; 
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            color: white;
+            display: inline-block;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .campo_cinza_grande{
+            background-color: #D3D3D3;
+            width: auto;
+            height:600px;
+            text-align: center;
+            justify-content: center;
+            align-items: center;    
+            
+        }
+
+        .campo_cinza_grande .um{
+            font-size: 80px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            color: #696969;  
+            margin: 200px 50px;
+        }
+
+        .campo_cinza_grande .dois{
+            font-size: 20px;
+            color: #696969; 
+            margin: -210px 50px;   
+        }
+
+        #menu {
+            background-color: #ffffff;
+            padding: 20px 0;
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .menu-item {
+            display: inline-block;
+            margin: 15px 50px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        .campo_titulo {
+            font-size: 49px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            color: #696969;
+            margin: 40px 50px;
+            text-align: center;
+        }
+
+        .campo_texto {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            text-align: center;
+        }
+        
+        .texto {
+            width: calc(25% - -208px);
+            margin: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+            text-align: left;
+        }
+
+        .quadrado {
+            width: 338px;
+            height: 200px;
+            box-sizing: border-box;
+            text-align: center;
+            background-color: #e5e3e3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .conteudo {
+            width: 338px;
+            height: 96px;
+            background-color: #999999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .campo_vitrine{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .item {
+            width: calc(25% - -40px);
+            margin: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+            text-align: left;
+        }
+
+        .quadrado {
+            color: #696969;
+        }
+
+        .conteudo {
+            font-size: 49px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .campo_contato {
+            background-color: #e4e4e4;
+            width: auto;
+            height: 60px;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            padding: 108px 0px;
+            display: flex;
+        }
+
+        .contato_item {
+            width: 340px;
+            height: 50px;
+            box-sizing: border-box;
+            font-size: 30px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            color: #ffffff;
+            text-align: center;
+            background-color: #8e8e8e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .circulo_logo_dois {
+            background: white;
+            border-radius: 50%;
+            width: 90px;
+            height: 90px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 240%;
+            right: 47%;
+        }
+
+        .circulo_logo_dois p{
+            font-size: 30px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            color: #696969;
+        }
+
+        .barra_menu_estilo_dois {
+            width: auto;
+            height: 50px;
+            background-color: #808080;
+            text-align: center;
+        }
+
+        .barra_cinza_topo_dois {
+        width: auto;
+        height: 150px;
+        background-color: #808080
+    }
+    </style>
+</head>
+    <body>
+        <!--ATIVIDADE 19-->
+        <header>
+            <div class="barra_cinza_topo"></div>
+
+            <div class="circulo_logo">
+                <p>LOGO</p>
+            </div>
+            <div class="barra_menu_estilo">
+                <div class="menu">
+                    <b>|</b><a class="menu-item">MENU</a><b>|</b>
+                    <a class="menu-item">MENU</a><b>|</b>
+                    <a class="menu-item">MENU</a><b>|</b>
+                    <a class="menu-item">MENU</a><b>|</b>
+                    <a class="menu-item">MENU</a><b>|</b>
+                </div>
+            </div>
+        </header>
+        <div class="campo_cinza_grande">
+            <div class="campo_cinza_grande_item">
+                <div>.</div>
+                <p class="um">PUBLICIDADE</p>
+                <p class="dois">ultilizar uma imagem aqui</p>
+            </div>
+        </div>
+        <div class="campo_titulo">TÍTULO</div>
+        <div class="campo_texto">
+            <div class="texto">
+                TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO
+                TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO
+                TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO
+                TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO
+                TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO
+                TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO
+                TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO
+                TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO
+            </div>
+            <div class="texto">
+                TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO
+                TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO
+                TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO
+                TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO
+                TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO
+                TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO
+                TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO
+                TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO
+            </div>
+        </div>
+        <div class="campo_vitrine">
+            <div class="item">
+                <div class="quadrado">FOTO</div>
+                <div class="conteudo">CONTEÚDO</div>
+            </div>
+            <div class="item">
+                <div class="quadrado">FOTO</div>
+                <div class="conteudo">CONTEÚDO</div>
+            </div>
+            <div class="item">
+                <div class="quadrado">FOTO</div>
+                <div class="conteudo">CONTEÚDO</div>
+            </div>
+        </div>
+        <div class="campo_contato">
+            <div class="contato_item">
+                <div class="campo_texto">
+                    CONTATO
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="barra_cinza_topo_dois"></div>
+            <div class="circulo_logo_dois">
+                <p>LOGO</p>
+            </div>
+            <div class="barra_menu_estilo_dois">
+                <div class="menu">
+                    <b>|</b><a class="menu-item">MENU</a><b>|</b>
+                    <a class="menu-item">MENU</a><b>|</b>
+                    <a class="menu-item">MENU</a><b>|</b>
+                    <a class="menu-item">MENU</a><b>|</b>
+                    <a class="menu-item">MENU</a><b>|</b>
+                </div>
+            </div>
+            <div class="barra_cinza_topo_dois"></div>
+        </div>
+    </body>
+</html>

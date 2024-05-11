@@ -96,9 +96,9 @@ begin
   // Preenchendo as pilhas de ingressos
   for i := 1 to maxIngresso do
   begin
-    empilhar(pilhaCamarote);
-    empilhar(pilhaLateral);
-    empilhar(pilhaAtrasGols);
+    empilhar(pilhaCamarote, 150);
+    empilhar(pilhaLateral, 80);
+    empilhar(pilhaAtrasGols, 50);
   end;
 end;
 

@@ -1,3 +1,6 @@
+//Alunos:
+//Daniel Espindola,  Rafael Batistti Munarin
+
 program ListaCidadesSC;
 
 type
@@ -12,6 +15,7 @@ var
     nomeCidade: string;
     quantidadeCidades: integer;
 
+//procedure que inicia a lista como vazia
 procedure InicializarLista(var lista: PontoCidade);
 begin
     lista := nil;
@@ -62,18 +66,22 @@ begin
     end;
 end;
 
+//proceure que recebe o tamanho maximo do array (cidades) que vao ser comparadas e ordenadas
 procedure SolicitarQuantidadeCidades(var quantidade: integer);
 begin
-    writeln('Quantas cidades de Santa Catarina deseja inserir?');
+    writeln('Quantas cidades de SC deseja ordenar por ordem alfabética?');
     readln(quantidade);
+    clrscr;
 end;
 
+//procediumento que recebe o nome digitado e armazena temporariamente em uma variável
 procedure LerNomeCidade(var nome: string);
 begin
     write('Nome da cidade: ');
     readln(nome);
 end;
 
+//procedura que "monta" a lsta utilizando o nome informando, usa as procedures LerNomeCidade e InserirCidade
 procedure PreencherLista(var lista: PontoCidade; quantidade: integer);
 var
     i: integer;
@@ -87,8 +95,10 @@ begin
     end;
 end;
 
+//Programa principal
 begin
     SolicitarQuantidadeCidades(quantidadeCidades);
     PreencherLista(listaCidades, quantidadeCidades);
+    clrscr;
     ExibirLista(listaCidades);
 end.

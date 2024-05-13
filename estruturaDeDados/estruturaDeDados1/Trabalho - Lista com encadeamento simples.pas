@@ -1,37 +1,43 @@
 program ListaCidadesSC;
 
 type
-    CidadePtr = ^Cidade;
-    Cidade = record
+    PontoCidade = ^RegistroCidade;
+    RegistroCidade = record
         nome: string;
-        proximo: CidadePtr;
+        proximo: PontoCidade;
     end;
 
 var
-    cabeca, atual, novo: CidadePtr;
+    listaCidades: PontoCidade;
     nomeCidade: string;
+    quantidadeCidades: integer;
 
-procedure InserirCidade(var cabeca: CidadePtr; nomeCidade: string);
-var
-    novoNo, anterior, atual: CidadePtr;
+procedure InicializarLista(var lista: PontoCidade);
 begin
-    new(novoNo);
-    novoNo^.nome := nomeCidade;
+    lista := nil;
+end;
+
+procedure InserirCidade(var lista: PontoCidade; nome: string);
+var
+    novoNo, anterior, atual: PontoCidade;
+begin
+    New(novoNo);
+    novoNo^.nome := nome;
     novoNo^.proximo := nil;
 
-    if cabeca = nil then
-        cabeca := novoNo
-    else if cabeca^.nome > nomeCidade then
+    if lista = nil then
+        lista := novoNo
+    else if lista^.nome > nome then
     begin
-        novoNo^.proximo := cabeca;
-        cabeca := novoNo;
+        novoNo^.proximo := lista;
+        lista := novoNo;
     end
     else
     begin
-        anterior := cabeca;
-        atual := cabeca^.proximo;
+        anterior := lista;
+        atual := lista^.proximo;
 
-        while (atual <> nil) and (atual^.nome < nomeCidade) do
+        while (atual <> nil) and (atual^.nome < nome) do
         begin
             anterior := atual;
             atual := atual^.proximo;
@@ -42,11 +48,11 @@ begin
     end;
 end;
 
-procedure ExibirLista(cabeca: CidadePtr);
+procedure ExibirLista(lista: PontoCidade);
 var
-    atual: CidadePtr;
+    atual: PontoCidade;
 begin
-    atual := cabeca;
+    atual := lista;
 
     writeln('Lista de cidades de Santa Catarina:');
     while atual <> nil do
@@ -56,18 +62,33 @@ begin
     end;
 end;
 
+procedure SolicitarQuantidadeCidades(var quantidade: integer);
 begin
-    cabeca := nil;
+    writeln('Quantas cidades de Santa Catarina deseja inserir?');
+    readln(quantidade);
+end;
 
-    // Solicitar os nomes das cidades
-    writeln('Digite o nome das cidades de Santa Catarina (Digite "Fim" para parar):');
-    repeat
-        write('Nome da cidade: ');
-        readln(nomeCidade);
-        if nomeCidade <> 'Fim' then
-            InserirCidade(cabeca, nomeCidade);
-    until nomeCidade = 'Fim';
+procedure LerNomeCidade(var nome: string);
+begin
+    write('Nome da cidade: ');
+    readln(nome);
+end;
 
-    // Exibindo a lista
-    ExibirLista(cabeca);
+procedure PreencherLista(var lista: PontoCidade; quantidade: integer);
+var
+    i: integer;
+    nomeCidade: string;
+begin
+    InicializarLista(lista);
+    for i := 1 to quantidade do
+    begin
+        LerNomeCidade(nomeCidade);
+        InserirCidade(lista, nomeCidade);
+    end;
+end;
+
+begin
+    SolicitarQuantidadeCidades(quantidadeCidades);
+    PreencherLista(listaCidades, quantidadeCidades);
+    ExibirLista(listaCidades);
 end.

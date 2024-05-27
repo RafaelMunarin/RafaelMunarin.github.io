@@ -1,5 +1,7 @@
 program GerenciadorFilaImpressao;
 
+//ALunos Daniel Espindola, Rafale Munarin
+
 type
   PNo = ^TNo;
   TNo = record

@@ -1,45 +1,45 @@
 program GerenciadorFilaImpressao;
 
-//ALunos Daniel Espindola, Rafale Munarin
+// Alunos: Daniel Espindola, Rafael Munarin
 
 type
-  PNo = ^TNo;
-  TNo = record
-    nome: string[50];
+  PAuxiliar = ^TAuxiliar;
+  TAuxiliar = record
+    nomeCliente: string[50];
     quantidadeCopias: integer;
     prioritario: boolean;
-    anterior, proximo: PNo;
+    anterior, proximo: PAuxiliar;
   end;
 
-  TFila = record
-    inicio, fim: PNo;
+  TFilaImpressao = record
+    inicio, fim: PAuxiliar;
     tamanho: integer;
   end;
 
-procedure InicializarFila(var fila: TFila);
-{ Inicializa a fila, definindo os ponteiros de início e fim como nil e tamanho como 0 }
+procedure InicializarFila(var fila: TFilaImpressao);
+{ Inicializa a fila, definindo os ponteiros de início e fim como nil e o tamanho como 0 }
 begin
   fila.inicio := nil;
   fila.fim := nil;
   fila.tamanho := 0;
 end;
 
-procedure Enfileirar(var fila: TFila; nome: string; quantidadeCopias: integer; prioritario: boolean);
+procedure AdicionarClienteFila(var fila: TFilaImpressao; nomeCliente: string; quantidadeCopias: integer; prioritario: boolean);
 { Adiciona um novo cliente à fila com seu nome, quantidade de cópias e prioridade }
 var
-  novoNo, temp: PNo;
+  novoAuxiliar, temp: PAuxiliar;
 begin
-  New(novoNo);
-  novoNo^.nome := nome;
-  novoNo^.quantidadeCopias := quantidadeCopias;
-  novoNo^.prioritario := prioritario;
-  novoNo^.proximo := nil;
+  New(novoAuxiliar);
+  novoAuxiliar^.nomeCliente := nomeCliente;
+  novoAuxiliar^.quantidadeCopias := quantidadeCopias;
+  novoAuxiliar^.prioritario := prioritario;
+  novoAuxiliar^.proximo := nil;
 
   if fila.fim = nil then
   begin
-    novoNo^.anterior := nil;
-    fila.inicio := novoNo;
-    fila.fim := novoNo;
+    novoAuxiliar^.anterior := nil;
+    fila.inicio := novoAuxiliar;
+    fila.fim := novoAuxiliar;
   end
   else
   begin
@@ -51,35 +51,35 @@ begin
 
       if temp = nil then
       begin
-        novoNo^.anterior := fila.fim;
-        fila.fim^.proximo := novoNo;
-        fila.fim := novoNo;
+        novoAuxiliar^.anterior := fila.fim;
+        fila.fim^.proximo := novoAuxiliar;
+        fila.fim := novoAuxiliar;
       end
       else
       begin
-        novoNo^.proximo := temp;
-        novoNo^.anterior := temp^.anterior;
+        novoAuxiliar^.proximo := temp;
+        novoAuxiliar^.anterior := temp^.anterior;
         if temp^.anterior <> nil then
-          temp^.anterior^.proximo := novoNo
+          temp^.anterior^.proximo := novoAuxiliar
         else
-          fila.inicio := novoNo;
-        temp^.anterior := novoNo;
+          fila.inicio := novoAuxiliar;
+        temp^.anterior := novoAuxiliar;
       end;
     end
     else
     begin
-      novoNo^.anterior := fila.fim;
-      fila.fim^.proximo := novoNo;
-      fila.fim := novoNo;
+      novoAuxiliar^.anterior := fila.fim;
+      fila.fim^.proximo := novoAuxiliar;
+      fila.fim := novoAuxiliar;
     end;
   end;
   fila.tamanho := fila.tamanho + 1;
 end;
 
-procedure Desenfileirar(var fila: TFila);
+procedure RemoverClienteFila(var fila: TFilaImpressao);
 { Remove o cliente no início da fila }
 var
-  temp: PNo;
+  temp: PAuxiliar;
 begin
   if fila.inicio <> nil then
   begin
@@ -94,23 +94,23 @@ begin
   end;
 end;
 
-procedure AtenderProximo(var fila: TFila);
+procedure AtenderProximoCliente(var fila: TFilaImpressao);
 { Atende o próximo cliente na fila, exibindo suas informações e removendo-o da fila }
 var
-  temp: PNo;
+  temp: PAuxiliar;
 begin
   if fila.inicio <> nil then
   begin
     temp := fila.inicio;
     if temp^.prioritario then
     begin
-      writeln('Atendendo cliente prioritário: ', temp^.nome, ' com ', temp^.quantidadeCopias, ' cópias.');
+      writeln('Atendendo cliente prioritário: ', temp^.nomeCliente, ' com ', temp^.quantidadeCopias, ' cópias.');
     end
     else
     begin
-      writeln('Atendendo cliente: ', temp^.nome, ' com ', temp^.quantidadeCopias, ' cópias.');
+      writeln('Atendendo cliente: ', temp^.nomeCliente, ' com ', temp^.quantidadeCopias, ' cópias.');
     end;
-    Desenfileirar(fila);
+    RemoverClienteFila(fila);
   end
   else
   begin
@@ -118,10 +118,10 @@ begin
   end;
 end;
 
-procedure MoverParaFrente(var fila: TFila; nome: string);
+procedure PriorizarCliente(var fila: TFilaImpressao; nomeCliente: string);
 { Move o cliente especificado pelo nome para a frente da fila, se não houver outro prioritário }
 var
-  temp, atual: PNo;
+  temp, atual: PAuxiliar;
   jaExistePrioritario: boolean;
 begin
   atual := fila.inicio;
@@ -145,7 +145,7 @@ begin
   end;
 
   atual := fila.inicio;
-  while (atual <> nil) and (atual^.nome <> nome) do
+  while (atual <> nil) and (atual^.nomeCliente <> nomeCliente) do
     atual := atual^.proximo;
 
   if atual <> nil then
@@ -170,30 +170,30 @@ begin
   end;
 end;
 
-procedure ImprimirFila(fila: TFila);
+procedure ImprimirFila(fila: TFilaImpressao);
 { Imprime todos os clientes na fila com suas informações }
 var
-  temp: PNo;
+  temp: PAuxiliar;
 begin
   temp := fila.inicio;
   while temp <> nil do
   begin
-    writeln('Nome: ', temp^.nome, ' | Cópias: ', temp^.quantidadeCopias, ' | Prioritário: ', temp^.prioritario);
+    writeln('Nome: ', temp^.nomeCliente, ' | Cópias: ', temp^.quantidadeCopias, ' | Prioritário: ', temp^.prioritario);
     temp := temp^.proximo;
   end;
 end;
 
 var
-  filaMono, filaColor, filaPlotter: TFila;
+  filaMono, filaColorida, filaPlotter: TFilaImpressao;
   opcao: integer;
-  nome: string;
+  nomeCliente: string;
   quantidadeCopias: integer;
   prioritario: boolean;
   prioridade: integer;
 
 begin
   InicializarFila(filaMono);
-  InicializarFila(filaColor);
+  InicializarFila(filaColorida);
   InicializarFila(filaPlotter);
 
   repeat
@@ -210,62 +210,61 @@ begin
       1:
         begin
           writeln('Nome do cliente: ');
-          readln(nome);
+          readln(nomeCliente);
           writeln('Quantidade de cópias: ');
           readln(quantidadeCopias);
           writeln('Prioritário (1 para sim, 0 para não): ');
           readln(prioridade);
           prioritario := prioridade = 1;
-          writeln('Fila (1 - Mono, 2 - Color, 3 - Plotter): ');
+          writeln('Fila (1 - Mono, 2 - Colorida, 3 - Plotter): ');
           readln(opcao);
           case opcao of
-            1: Enfileirar(filaMono, nome, quantidadeCopias, prioritario);
-            2: Enfileirar(filaColor, nome, quantidadeCopias, prioritario);
-            3: Enfileirar(filaPlotter, nome, quantidadeCopias, prioritario);
+            1: AdicionarClienteFila(filaMono, nomeCliente, quantidadeCopias, prioritario);
+            2: AdicionarClienteFila(filaColorida, nomeCliente, quantidadeCopias, prioritario);
+            3: AdicionarClienteFila(filaPlotter, nomeCliente, quantidadeCopias, prioritario);
           end;
         end;
       2:
         begin
-          writeln('Fila (1 - Mono, 2 - Color, 3 - Plotter): ');
+          writeln('Fila (1 - Mono, 2 - Colorida, 3 - Plotter): ');
           readln(opcao);
           case opcao of
-            1: Desenfileirar(filaMono);
-            2: Desenfileirar(filaColor);
-            3: Desenfileirar(filaPlotter);
+            1: RemoverClienteFila(filaMono);
+            2: RemoverClienteFila(filaColorida);
+            3: RemoverClienteFila(filaPlotter);
           end;
         end;
       3:
         begin
           writeln('Fila Mono:');
           ImprimirFila(filaMono);
-          writeln('Fila Color:');
-          ImprimirFila(filaColor);
+          writeln('Fila Colorida:');
+          ImprimirFila(filaColorida);
           writeln('Fila Plotter:');
           ImprimirFila(filaPlotter);
         end;
       4:
         begin
           writeln('Nome do cliente a priorizar: ');
-          readln(nome);
-          writeln('Fila (1 - Mono, 2 - Color, 3 - Plotter): ');
+          readln(nomeCliente);
+          writeln('Fila (1 - Mono, 2 - Colorida, 3 - Plotter): ');
           readln(opcao);
           case opcao of
-            1: MoverParaFrente(filaMono, nome);
-            2: MoverParaFrente(filaColor, nome);
-            3: MoverParaFrente(filaPlotter, nome);
+            1: PriorizarCliente(filaMono, nomeCliente);
+            2: PriorizarCliente(filaColorida, nomeCliente);
+            3: PriorizarCliente(filaPlotter, nomeCliente);
           end;
         end;
       5:
         begin
-          writeln('Fila (1 - Mono, 2 - Color, 3 - Plotter): ');
+          writeln('Fila (1 - Mono, 2 - Colorida, 3 - Plotter): ');
           readln(opcao);
           case opcao of
-            1: AtenderProximo(filaMono);
-            2: AtenderProximo(filaColor);
-            3: AtenderProximo(filaPlotter);
+            1: AtenderProximoCliente(filaMono);
+            2: AtenderProximoCliente(filaColorida);
+            3: AtenderProximoCliente(filaPlotter);
           end;
         end;
     end;
   until opcao = 0;
 end.
-

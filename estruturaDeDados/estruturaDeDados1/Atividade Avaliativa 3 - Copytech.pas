@@ -16,16 +16,16 @@ type
     tamanho: integer;
   end;
 
-procedure InicializarFila(var fila: TFilaImpressao);
 { Inicializa a fila, definindo os ponteiros de início e fim como nil e o tamanho como 0 }
+procedure InicializarFila(var fila: TFilaImpressao);
 begin
   fila.inicio := nil;
   fila.fim := nil;
   fila.tamanho := 0;
 end;
 
-procedure AdicionarClienteFila(var fila: TFilaImpressao; nomeCliente: string; quantidadeCopias: integer; prioritario: boolean);
 { Adiciona um novo cliente à fila com seu nome, quantidade de cópias e prioridade }
+procedure AdicionarClienteFila(var fila: TFilaImpressao; nomeCliente: string; quantidadeCopias: integer; prioritario: boolean);
 var
   novoAuxiliar, temp: PAuxiliar;
 begin
@@ -76,8 +76,8 @@ begin
   fila.tamanho := fila.tamanho + 1;
 end;
 
-procedure RemoverClienteFila(var fila: TFilaImpressao);
 { Remove o cliente no início da fila }
+procedure RemoverClienteFila(var fila: TFilaImpressao);
 var
   temp: PAuxiliar;
 begin
@@ -94,8 +94,8 @@ begin
   end;
 end;
 
-procedure AtenderProximoCliente(var fila: TFilaImpressao);
 { Atende o próximo cliente na fila, exibindo suas informações e removendo-o da fila }
+procedure AtenderProximoCliente(var fila: TFilaImpressao);
 var
   temp: PAuxiliar;
 begin
@@ -118,8 +118,8 @@ begin
   end;
 end;
 
-procedure PriorizarCliente(var fila: TFilaImpressao; nomeCliente: string);
 { Move o cliente especificado pelo nome para a frente da fila, se não houver outro prioritário }
+procedure PriorizarCliente(var fila: TFilaImpressao; nomeCliente: string);
 var
   temp, atual: PAuxiliar;
   jaExistePrioritario: boolean;
@@ -170,8 +170,8 @@ begin
   end;
 end;
 
-procedure ImprimirFila(fila: TFilaImpressao);
 { Imprime todos os clientes na fila com suas informações }
+procedure ImprimirFila(fila: TFilaImpressao);
 var
   temp: PAuxiliar;
 begin

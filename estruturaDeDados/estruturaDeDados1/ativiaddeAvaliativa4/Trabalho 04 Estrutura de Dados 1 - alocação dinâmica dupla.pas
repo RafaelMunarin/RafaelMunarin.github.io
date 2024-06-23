@@ -1,5 +1,7 @@
 program DequeDinamico;
 
+// Alunos: Rafael Munarin, Daniel Espindola
+
 type
   PNo = ^TNo;  // Definição do ponteiro para o nó
   TNo = record

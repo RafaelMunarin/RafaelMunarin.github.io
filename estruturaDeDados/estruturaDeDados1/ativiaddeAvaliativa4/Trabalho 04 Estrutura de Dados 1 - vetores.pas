@@ -1,5 +1,7 @@
 program DequeVetor;
 
+// Alunos: Rafael Munarin, Daniel Espindola
+
 const
   MAX = 6; // Tamanho máximo do deque
 

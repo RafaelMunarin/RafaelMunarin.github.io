@@ -160,6 +160,35 @@ begin
   EstaCheio := False;  // Sempre retorna falso
 end;
 
+// Percorre e imprime o deque inteiro
+procedure ImprimirDeque(var Deque: TDeque);
+var
+  NoAtual: PNo;
+begin
+  if EstaVazio(Deque) then
+    writeln('Deque está vazio')
+	else
+		begin
+		  NoAtual := Deque.Cabeca;
+		  writeln ('Cabeça p/ Cauda');
+		  while NoAtual <> nil do
+		  begin
+		    write(NoAtual^.Dado, ' ');
+		    NoAtual := NoAtual^.Proximo;
+		  end;
+		  writeln;
+		  
+		  NoAtual := Deque.Cauda;
+		  writeln ('Cauda p/ Cabeça');
+		  while NoAtual <> nil do
+		  begin
+		    write(NoAtual^.Dado, ' ');
+		    NoAtual := NoAtual^.Anterior;
+		  end;
+		  writeln;
+		end;
+end;
+
 var
   Deque: TDeque;  // Declaração do deque
   Opcao, Valor: Integer;  // Declaração de variáveis para o menu e valor
@@ -173,48 +202,51 @@ begin
     writeln('2. Adicionar no fim');  // Opção para adicionar no fim
     writeln('3. Remover do início');  // Opção para remover do início
     writeln('4. Remover do fim');  // Opção para remover do fim
-    writeln('5. Obter início');  // Opção para obter o valor do início
-    writeln('6. Obter fim');  // Opção para obter o valor do fim
-    writeln('7. Obter tamanho');  // Opção para obter o tamanho do deque
-    writeln('8. Sair');  // Opção para sair
-    write('Escolha uma opção: ');  // Pede para o usuário escolher uma opção
+    writeln('5. Obter do início');  // Opção para obter do início
+    writeln('6. Obter do fim');  // Opção para obter do fim
+    writeln('7. Tamanho do deque');  // Opção para obter o tamanho do deque
+    writeln('8. Imprimir deque');  // Opção para imprimir o deque
+    writeln('9. Sair');  // Opção para sair
+    write('Escolha uma opção: ');  // Solicita a escolha de uma opção
     readln(Opcao);  // Lê a opção escolhida
 
     case Opcao of
       1: begin
-           write('Digite o valor para adicionar no início: ');  // Pede o valor para adicionar no início
-           readln(Valor);  // Lê o valor
-           AdicionarInicio(Deque, Valor);  // Chama a função para adicionar no início
-         end;
+        write('Digite o valor para adicionar no início: ');  // Solicita o valor para adicionar no início
+        readln(Valor);  // Lê o valor
+        AdicionarInicio(Deque, Valor);  // Chama a função para adicionar no início
+      end;
       2: begin
-           write('Digite o valor para adicionar no fim: ');  // Pede o valor para adicionar no fim
-           readln(Valor);  // Lê o valor
-           AdicionarFim(Deque, Valor);  // Chama a função para adicionar no fim
-         end;
+        write('Digite o valor para adicionar no fim: ');  // Solicita o valor para adicionar no fim
+        readln(Valor);  // Lê o valor
+        AdicionarFim(Deque, Valor);  // Chama a função para adicionar no fim
+      end;
       3: begin
-           Valor := RemoverInicio(Deque);  // Chama a função para remover do início e armazena o valor removido
-           if Valor <> -1 then  // Se o valor for diferente de -1 (remoção bem-sucedida)
-             writeln('Valor removido do início: ', Valor);  // Exibe o valor removido
-         end;
+        Valor := RemoverInicio(Deque);  // Chama a função para remover do início
+        if Valor <> -1 then
+          writeln('Valor removido do início: ', Valor);  // Exibe o valor removido
+      end;
       4: begin
-           Valor := RemoverFim(Deque);  // Chama a função para remover do fim e armazena o valor removido
-           if Valor <> -1 then  // Se o valor for diferente de -1 (remoção bem-sucedida)
-             writeln('Valor removido do fim: ', Valor);  // Exibe o valor removido
-         end;
+        Valor := RemoverFim(Deque);  // Chama a função para remover do fim
+        if Valor <> -1 then
+          writeln('Valor removido do fim: ', Valor);  // Exibe o valor removido
+      end;
       5: begin
-           Valor := ObterInicio(Deque);  // Chama a função para obter o valor do início
-           if Valor <> -1 then  // Se o valor for diferente de -1
-             writeln('Valor no início: ', Valor);  // Exibe o valor no início
-         end;
+        Valor := ObterInicio(Deque);  // Chama a função para obter do início
+        if Valor <> -1 then
+          writeln('Valor do início: ', Valor);  // Exibe o valor do início
+      end;
       6: begin
-           Valor := ObterFim(Deque);  // Chama a função para obter o valor do fim
-           if Valor <> -1 then  // Se o valor for diferente de -1
-             writeln('Valor no fim: ', Valor);  // Exibe o valor no fim
-         end;
+        Valor := ObterFim(Deque);  // Chama a função para obter do fim
+        if Valor <> -1 then
+          writeln('Valor do fim: ', Valor);  // Exibe o valor do fim
+      end;
       7: writeln('Tamanho do deque: ', ObterTamanho(Deque));  // Exibe o tamanho do deque
-      8: writeln('Saindo...');  // Mensagem de saída
-      else
-        writeln('Opção inválida!');  // Mensagem para opção inválida
+      8: ImprimirDeque(Deque);  // Chama a função para imprimir o deque
+      9: writeln('FLW VLW');  // Exibe mensagem de saída
+    else
+      writeln('Opção inválida. Tente novamente.');  // Exibe mensagem de erro para opção inválida
     end;
-  until Opcao = 8;  // Repete até que a opção seja 8 (sair)
+    writeln;
+  until Opcao = 9;  // Repete o loop até a opção ser 9 (sair)
 end.

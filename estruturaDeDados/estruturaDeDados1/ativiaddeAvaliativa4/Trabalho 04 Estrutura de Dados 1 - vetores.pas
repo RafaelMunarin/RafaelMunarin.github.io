@@ -179,7 +179,7 @@ begin
              writeln('Valor no fim: ', Valor);  // Exibe o valor no fim
          end;
       7: writeln('Tamanho do deque: ', ObterTamanho(Deque));  // Exibe o tamanho do deque
-      8: writeln('Saindo...');  // Mensagem de saída
+      8: writeln('VLW FLW');  // Mensagem de saída
       else
         writeln('Opção inválida!');  // Mensagem de erro para opção inválida
     end;

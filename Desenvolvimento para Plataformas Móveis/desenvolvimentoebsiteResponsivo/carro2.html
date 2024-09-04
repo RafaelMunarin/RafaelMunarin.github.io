@@ -9,52 +9,42 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
-    <div id="mySidenav" class="sidenav collapsed">
-        <a href="index.html">
-            <i class="fas fa-home icon"></i>
-            <span class="hidden-text">Início</span>
-        </a>
-        <a href="carro1.html">
-            <i class="fas fa-car icon"></i>
-            <span class="hidden-text">Nissan Skyline R34 GT-R</span>
-        </a>
-        <a href="carro2.html">
-            <i class="fas fa-car icon"></i>
-            <span class="hidden-text">Volkswagen Polo GTI</span>
-        </a>
-        <a href="carro3.html">
-            <i class="fas fa-car icon"></i>
-            <span class="hidden-text">Honda Civic Type R</span>
-        </a>
-    </div>
+    <header class="navbar navbar-dark">
+        <a class="navbar-brand" href="index.html">Carros Esportivos</a>
+        <button class="btn btn-light" onclick="window.location.href='index.html'">
+            <i class="fas fa-arrow-left"></i> Voltar
+        </button>
+    </header>
 
-    <span class="openbtn" onclick="toggleNav()">☰</span>
-
-    <div id="main">
-        <header class="bg-dark text-light text-center py-5">
+    <main class="container mt-5">
+        <header>
             <div class="container">
-                <h1 class="display-4">Volkswagen Polo GTI</h1>
+                <h1>Volkswagen Polo GTI</h1>
             </div>
         </header>
-        <main class="container mt-5">
-            <div class="row">
-                <div class="col-md-12">
-                    <img src="https://sf1.autoplus.fr/wp-content/uploads/autoplus/2020/09/la-volkswagen-polo-gti-victime-son-succes.jpg" class="img-fluid" alt="Volkswagen Polo GTI">
-                    <div class="mt-4">
-                        <!-- Adicione aqui as especificações do Volkswagen Polo GTI -->
-                    </div>
+        <div class="row">
+            <div class="col-md-6">
+                <img src="https://sf1.autoplus.fr/wp-content/uploads/autoplus/2020/09/la-volkswagen-polo-gti-victime-son-succes.jpg" class="img-fluid" alt="Volkswagen Polo GTI">
+            </div>
+            <div class="col-md-6">
+                <div class="mt-4">
+                    <h3>Especificações</h3>
+                    <ul class="list-unstyled">
+                        <li><strong>Motor:</strong> 2.0 TSI Inline-4</li>
+                        <li><strong>Potência:</strong> 207 hp (154 kW) @ 5,000 rpm</li>
+                        <li><strong>Torque:</strong> 320 Nm @ 2,000-3,500 rpm</li>
+                        <li><strong>Transmissão:</strong> 6 velocidades manual ou DSG de 7 marchas</li>
+                        <li><strong>0-100 km/h:</strong> 6.5 segundos</li>
+                        <li><strong>Velocidade Máxima:</strong> 153 mph (246 km/h)</li>
+                        <li><strong>Peso:</strong> 1,285 kg</li>
+                    </ul>
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
 
-    <footer class="bg-dark text-light text-center py-3">
+    <footer>
         &copy; 2024 Carros Esportivos
     </footer>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="script.js"></script>
 </body>
 </html>

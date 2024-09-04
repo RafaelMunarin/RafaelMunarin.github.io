@@ -1,99 +1,98 @@
-body {
-    margin: 0;
+html, body {
+    height: 100%; /* Garante que o corpo e o html ocupem a altura total da tela */
+    margin: 0; /* Remove a margem padrão do body */
     font-family: Arial, sans-serif;
-    overflow-x: hidden; /* Previne rolagem horizontal */
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
 }
 
-.openbtn {
-    font-size: 20px;
-    cursor: pointer;
+header {
     background-color: #333;
     color: white;
-    border: none;
-    padding: 10px;
-    position: fixed;
-    top: 20px; /* Ajusta a posição superior */
-    left: 10px;
-    z-index: 3; /* Aumenta o z-index para garantir que o botão fique acima da barra lateral */
+    text-align: center;
+    padding: 20px 0; /* Ajuste o padding conforme necessário */
+    position: relative; /* Adicione position relative para o botão de voltar */
 }
 
-.sidenav {
-    width: 80px; /* Largura padrão recolhida */
-    position: fixed;
-    z-index: 2;
-    top: 0;
-    left: 0;
-    background-color: #333;
-    transition: width 0.3s;
-    padding-top: 60px;
+body {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    color: white;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
-    overflow-y: auto;
-    height: 100vh; /* Ocupar toda a altura da tela */
 }
 
-.sidenav.expanded {
-    width: 280px; /* Largura maior quando expandida */
-    padding-top: 60px; /* Mantém o padding mesmo quando expandida */
+.card {
+    margin-bottom: 1em; /* Adiciona um espaçamento inferior para cada cartão */
+    border: none; /* Remove a borda padrão dos cartões */
+    border-radius: 0.5em; /* Define a borda arredondada para os cartões */
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.2); /* Adiciona uma sombra para os cartões */
+    min-height: 200px;
 }
 
-.sidenav a {
-    display: flex;
-    align-items: center;
-    padding: 15px;
-    text-decoration: none;
-    font-size: 18px;
-    color: #818181;
-    transition: color 0.3s;
+.card-img-top {
     width: 100%;
-    box-sizing: border-box;
-}
-
-.sidenav a:hover {
-    color: #f1f1f1;
-}
-
-.sidenav .icon {
-    font-size: 24px;
-    margin-right: 10px;
-}
-
-.sidenav .hidden-text {
-    display: inline;
-}
-
-.sidenav.collapsed .hidden-text {
-    display: none;
+    height: 200px; /* Ajuste a altura conforme necessário */
+    object-fit: cover; /* Faz com que a imagem se ajuste ao tamanho sem distorcer */
 }
 
 #main {
-    margin-left: 80px; /* Margem esquerda para acompanhar a barra lateral recolhida */
-    transition: margin-left 0.3s;
-    padding: 16px;
-    flex: 1;
-    margin-bottom: 50px; /* Espaço para o footer */
-    min-height: calc(100vh - 50px); /* Garante que o conteúdo principal ocupe a altura mínima da tela */
+    flex-grow: 1;
+    overflow-y: auto;
+    min-height: calc(100vh - 120px);
+    margin-bottom: 50px;
+    padding-bottom: 50px; /* Adicione essa propriedade */
+}
+
+.header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.back-btn {
+    position: absolute;
+    right: 20px; /* Ajuste o espaço do botão de voltar da borda direita */
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #444;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.header-title {
+    margin: 0;
+    font-size: 1.5rem; /* Ajuste o tamanho da fonte conforme necessário */
+}
+
+.card-body {
+    padding: 1em;
+    text-align: center;
+}
+
+.car-title {
+    font-size: 1.2em; /* Define o tamanho da fonte para o título do cartão */
+    font-weight: bold; /* Define o peso da fonte para o título do cartão */
 }
 
 footer {
-    position: fixed;
-    bottom: 0;
-    left: 80px; /* Largura do footer para acompanhar a barra lateral recolhida */
-    width: calc(100% - 80px); /* Largura do footer acompanhando a barra lateral recolhida */
     background-color: #333;
     color: white;
     text-align: center;
     padding: 10px 0;
-    z-index: 1;
+    width: 100%;
+    position: absolute; /* Adicione essa propriedade */
+    bottom: 0;
+    left: 0;
 }
 
-.sidenav.expanded + #main footer {
-    left: 280px; /* Ajuste para quando a barra lateral estiver expandida */
-    width: calc(100% - 280px); /* Ajusta a largura do footer quando a barra lateral estiver expandida */
+@media (max-width: 768px) {
+    .card-columns {
+        column-count: 2; /* Define o número de colunas para o layout de cartões em telas menores */
+    }
+}
+
+@media (max-width: 480px) {
+    .card-columns {
+        column-count: 1; /* Define o número de colunas para o layout de cartões em telas muito menores */
+        padding-bottom: 100px;
+    }
 }

@@ -1,0 +1,99 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden; /* Previne rolagem horizontal */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px;
+    position: fixed;
+    top: 20px; /* Ajusta a posição superior */
+    left: 10px;
+    z-index: 3; /* Aumenta o z-index para garantir que o botão fique acima da barra lateral */
+}
+
+.sidenav {
+    width: 80px; /* Largura padrão recolhida */
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    background-color: #333;
+    transition: width 0.3s;
+    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+    height: 100vh; /* Ocupar toda a altura da tela */
+}
+
+.sidenav.expanded {
+    width: 280px; /* Largura maior quando expandida */
+    padding-top: 60px; /* Mantém o padding mesmo quando expandida */
+}
+
+.sidenav a {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #818181;
+    transition: color 0.3s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .icon {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.sidenav .hidden-text {
+    display: inline;
+}
+
+.sidenav.collapsed .hidden-text {
+    display: none;
+}
+
+#main {
+    margin-left: 80px; /* Margem esquerda para acompanhar a barra lateral recolhida */
+    transition: margin-left 0.3s;
+    padding: 16px;
+    flex: 1;
+    margin-bottom: 50px; /* Espaço para o footer */
+    min-height: calc(100vh - 50px); /* Garante que o conteúdo principal ocupe a altura mínima da tela */
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 80px; /* Largura do footer para acompanhar a barra lateral recolhida */
+    width: calc(100% - 80px); /* Largura do footer acompanhando a barra lateral recolhida */
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    z-index: 1;
+}
+
+.sidenav.expanded + #main footer {
+    left: 280px; /* Ajuste para quando a barra lateral estiver expandida */
+    width: calc(100% - 280px); /* Ajusta a largura do footer quando a barra lateral estiver expandida */
+}

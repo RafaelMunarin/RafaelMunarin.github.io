@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carros Esportivos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div id="mySidenav" class="sidenav collapsed">
+        <a href="index.html">
+            <i class="fas fa-home icon"></i>
+            <span class="hidden-text">Início</span>
+        </a>
+        <a href="carro1.html">
+            <i class="fas fa-car icon"></i>
+            <span class="hidden-text">Nissan Skyline R34 GT-R</span>
+        </a>
+        <a href="carro2.html">
+            <i class="fas fa-car icon"></i>
+            <span class="hidden-text">Volkswagen Polo GTI</span>
+        </a>
+        <a href="carro3.html">
+            <i class="fas fa-car icon"></i>
+            <span class="hidden-text">Honda Civic Type R</span>
+        </a>
+    </div>
+
+    <span class="openbtn" onclick="toggleNav()">☰</span>
+
+    <div id="main">
+        <main class="flex-grow-1">
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card border-0 shadow-sm">
+                            <a href="carro1.html">
+                                <img src="https://m.media-amazon.com/images/I/71RyMcAwIJL._AC_SL1500_.jpg" class="card-img-top" alt="Nissan Skyline R34 GT-R">
+                                <div class="card-body">
+                                    <h5 class="card-title">Nissan Skyline R34 GT-R</h5>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card border-0 shadow-sm">
+                            <a href="carro2.html">
+                                <img src="https://sf1.autoplus.fr/wp-content/uploads/autoplus/2020/09/la-volkswagen-polo-gti-victime-son-succes.jpg" class="card-img-top" alt="Volkswagen Polo GTI">
+                                <div class="card-body">
+                                    <h5 class="card-title">Volkswagen Polo GTI</h5>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card border-0 shadow-sm">
+                            <a href="carro3.html">
+                                <img src="https://cdn.motor1.com/images/mgl/Oo376A/s1/honda-civic-type-r---brasil.jpg" class="card-img-top" alt="Honda Civic Type R">
+                                <div class="card-body">
+                                    <h5 class="card-title">Honda Civic Type R</h5>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="bg-dark text-light text-center py-3">
+        &copy; 2024 Carros Esportivos
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

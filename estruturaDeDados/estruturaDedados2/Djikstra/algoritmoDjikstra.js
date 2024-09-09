@@ -1,4 +1,4 @@
-// Grafo das cidades e distâncias
+// Definição do grafo das cidades e distâncias
 const grafo = {
     "Salete": { "Santa Teresinha": 79.2, "Vítmarsum": 39.6, "Taió": 52.8 },
     "Santa Teresinha": { "Salete": 79.2, "Vítmarsum": 18 },
@@ -17,7 +17,7 @@ const grafo = {
     "Rio do Oeste": { "Presidente Getúlio": 66, "Pouso Redondo": 69, "Taió": 60, "Ibirama": 99, "Lontras": 10 }
 }
 
-// Função para inicializar o select de cidades
+// Função Inicializar
 function inicializarCidades() {
     const cidades = Object.keys(grafo)
     const selectInicial = document.getElementById("cidadeInicial")
@@ -36,7 +36,7 @@ function inicializarCidades() {
     })
 }
 
-// Função de Dijkstra e funções auxiliares (já adaptado com nomes em português)
+// Função de Dijkstra
 function dijkstra(grafo, cidadeInicial, cidadeFinal) {
     let distancias = {}
     let visitadas = {}
@@ -69,6 +69,7 @@ function dijkstra(grafo, cidadeInicial, cidadeFinal) {
     return construirCaminho(antecessores, cidadeInicial, cidadeFinal, distancias)
 }
 
+// Função para obter a cidade mais próxima da fila de prioridade
 function obterCidadeMaisProxima(filaDePrioridade, distancias) {
     let menorDistancia = Infinity
     let cidadeMaisProxima = null
@@ -81,6 +82,7 @@ function obterCidadeMaisProxima(filaDePrioridade, distancias) {
     return cidadeMaisProxima
 }
 
+// Função para montar o caminho mais "curto"
 function construirCaminho(antecessores, cidadeInicial, cidadeFinal, distancias) {
     let caminho = []
     let cidadeAtual = cidadeFinal

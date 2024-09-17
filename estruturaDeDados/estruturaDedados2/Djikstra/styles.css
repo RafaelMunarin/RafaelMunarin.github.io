@@ -1,5 +1,3 @@
-/* estilos.css - Layout refinado com a imagem maior à direita */
-
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -102,7 +100,7 @@ button:hover {
 }
 
 .diagrama-container {
-    width: 150%; /* Aumente o espaço reservado para a imagem */
+    width: 150%;
     padding-left: 20px;
     text-align: right;
 }
@@ -112,4 +110,11 @@ button:hover {
     height: auto; 
     border-radius: 8px;
     border: 1px solid #ddd;
+}
+
+.grafo-custo {
+    width: 100%;
+    height: 500px;
+    border: 1px solid lightgray;
+    margin-top: 20px;
 }

@@ -98,29 +98,36 @@ function construirCaminho(antecessores, cidadeInicial, cidadeFinal, distancias) 
 }
 
 // Função para exibir o caminho em uma árvore
-function exibirArvoreCaminho(caminho) {
-    const arvoreDiv = document.getElementById("arvoreCaminho")
-    arvoreDiv.innerHTML = '' // Limpa a árvore anterior
+function exibirArvoreCaminho(caminho, custos) {
+    const arvoreDiv = document.getElementById("arvoreCaminho");
+    arvoreDiv.innerHTML = ''; // Limpa a árvore anterior
 
     caminho.forEach((cidade, index) => {
-        // Cria um div para cada cidade
+        let caminhoItemDiv = document.createElement("div");
+        caminhoItemDiv.classList.add("caminho-item");
+
         let cidadeDiv = document.createElement("div");
-        cidadeDiv.classList.add("cidade")
-        cidadeDiv.innerText = cidade
+        cidadeDiv.classList.add("cidade");
+        cidadeDiv.innerText = cidade;
 
-        // Adiciona a cidade à árvore
-        arvoreDiv.appendChild(cidadeDiv)
+        caminhoItemDiv.appendChild(cidadeDiv);
 
-        // Se não for a última cidade, adiciona uma linha
         if (index < caminho.length - 1) {
-            let linha = document.createElement("div");
-            linha.classList.add("linha")
-            arvoreDiv.appendChild(linha)
+            let linhaDiv = document.createElement("div");
+            linhaDiv.classList.add("linha");
+            caminhoItemDiv.appendChild(linhaDiv);
+
+            let custoDiv = document.createElement("div");
+            custoDiv.classList.add("custo-caminho");
+            custoDiv.innerText = `${custos[index]}`;
+            caminhoItemDiv.appendChild(custoDiv);
         }
-    })
+
+        arvoreDiv.appendChild(caminhoItemDiv);
+    });
 }
 
-// Função para calcular e exibir o caminho
+// Função para calcular e exibir o caminho e o total do custo
 function calcularCaminho() {
     const cidadeInicial = document.getElementById("cidadeInicial").value
     const cidadeFinal = document.getElementById("cidadeFinal").value
@@ -130,8 +137,28 @@ function calcularCaminho() {
         return
     }
 
+    // Calcula o caminho e os custos
     const resultado = dijkstra(grafo, cidadeInicial, cidadeFinal)
-    exibirArvoreCaminho(resultado.caminho)
+    const custos = calcularCustosCaminho(resultado.caminho)
+
+    // Exibe a árvore de caminho com os custos individuais
+    exibirArvoreCaminho(resultado.caminho, custos)
+
+    // Exibe o total do custo no final
+    const totalCustoDiv = document.getElementById("totalCusto")
+    totalCustoDiv.innerText = `Custo total: ${resultado.distanciaTotal.toFixed(2)}`
+}
+
+// Função para calcular os custos de cada trecho do caminho
+function calcularCustosCaminho(caminho) {
+    let custos = []
+    for (let i = 0; i < caminho.length - 1; i++) {
+        const cidadeAtual = caminho[i]
+        const proximaCidade = caminho[i + 1]
+        const custo = grafo[cidadeAtual][proximaCidade]
+        custos.push(custo)
+    }
+    return custos
 }
 
 // Inicializa as cidades ao carregar a página

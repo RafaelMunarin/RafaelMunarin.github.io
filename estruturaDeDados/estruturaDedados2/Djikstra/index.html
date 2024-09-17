@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Caminho Mais Curto</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://unpkg.com/vis-network/styles/vis-network.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+ 
 </head>
 <body>
     <h1>Selecione o Caminho</h1>
@@ -22,13 +25,14 @@
             <div id="resultado">
                 <h3>Árvore de Caminho:</h3>
                 <div id="arvoreCaminho" class="arvore-caminho"></div>
-                <div id="totalCusto" class="total-custo"></div> <!-- Novo elemento para o custo total -->
+                <div id="totalCusto" class="total-custo"></div>
             </div>            
         </div>
         <div class="diagrama-container">
             <img src="image/diagramaCidades.png" alt="Diagrama do Mapa Completo">
         </div>
     </div>
+    <div id="grafoCusto" class="grafo-custo"></div>
 
     <script src="algoritmoDjikstra.js"></script>
 </body>

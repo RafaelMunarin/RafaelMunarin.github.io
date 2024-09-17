@@ -1,19 +1,19 @@
 // Definição do grafo das cidades e distâncias
 const grafo = {
-    "Salete": { "Santa Teresinha": 79.2, "Vítmarsum": 39.6, "Taió": 52.8 },
-    "Santa Teresinha": { "Salete": 79.2, "Vítmarsum": 18 },
-    "Vítmarsum": { "Santa Teresinha": 18, "Salete": 39.6, "Dona Ema": 14, "Presidente Getúlio": 193.5 },
-    "Dona Ema": { "Vítmarsum": 14, "José Boiteux": 9 },
+    "Salete": { "Santa Teresinha": 79.2, "Witmarsum": 39.6, "Taió": 52.8 },
+    "Santa Teresinha": { "Salete": 79.2, "Witmarsum": 18 },
+    "Witmarsum": { "Santa Teresinha": 18, "Salete": 39.6, "Dona Ema": 14, "Presidente Getúlio": 193.5 },
+    "Dona Ema": { "Witmarsum": 14, "José Boiteux": 9 },
     "José Boiteux": { "Dona Ema": 9, "Presidente Getúlio": 40.5 },
-    "Presidente Getúlio": { "José Boiteux": 40.5, "Vítmarsum": 193.5, "Ibirama": 39.6, "Rio do Oeste": 66 },
+    "Presidente Getúlio": { "José Boiteux": 40.5, "Witmarsum": 193.5, "Ibirama": 39.6, "Rio do Oeste": 66 },
     "Ibirama": { "Presidente Getúlio": 39.6, "Lontras": 6 },
     "Lontras": { "Ibirama": 6, "Rio do Sul": 5 },
     "Rio do Sul": { "Lontras": 5, "Trombudo Central": 8 },
     "Trombudo Central": { "Rio do Sul": 8, "Braço Trombudo": 5 },
     "Braço Trombudo": { "Trombudo Central": 5, "Pouso Redondo": 17 },
-    "Pouso Redondo": { "Braço Trombudo": 17, "Rio do Oeste": 69, "Taió": 21 },
+    "Pouso Redondo": { "Braço Trombudo": 17, "Rio do Oeste": 69, "Taió": 15 },
     "Mirim Doce": { "Taió": 27 },
-    "Taió": { "Salete": 52.8, "Mirim Doce": 27, "Pouso Redondo": 21, "Rio do Oeste": 60 },
+    "Taió": { "Salete": 52.8, "Mirim Doce": 27, "Pouso Redondo": 15, "Rio do Oeste": 60 },
     "Rio do Oeste": { "Presidente Getúlio": 66, "Pouso Redondo": 69, "Taió": 60, "Ibirama": 99, "Lontras": 10 }
 }
 

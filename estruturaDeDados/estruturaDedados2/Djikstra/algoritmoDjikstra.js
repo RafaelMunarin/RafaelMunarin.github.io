@@ -129,7 +129,50 @@ function exibirArvoreCaminho(caminho, custos) {
     });
 }
 
-// Função para calcular e exibir o caminho e o total do custo
+
+function exibirGrafoCusto(caminho, custos) {
+    // Prepare os dados para o grafo
+    let nodes = new vis.DataSet([]);
+    let edges = new vis.DataSet([]);
+
+    // Adiciona nós e arestas ao grafo
+    caminho.forEach((cidade, index) => {
+        nodes.add({ id: cidade, label: cidade });
+        if (index < caminho.length - 1) {
+            edges.add({
+                from: cidade,
+                to: caminho[index + 1],
+                label: `${custos[index]}`,
+                arrows: 'to'
+            });
+        }
+    });
+
+    // Configurações do grafo
+    let data = {
+        nodes: nodes,
+        edges: edges
+    };
+    let options = {
+        nodes: {
+            shape: 'dot',
+            size: 20
+        },
+        edges: {
+            width: 2,
+            color: { inherit: true }
+        },
+        physics: {
+            enabled: false
+        }
+    };
+
+    // Cria o grafo
+    let container = document.getElementById('grafoCusto');
+    new vis.Network(container, data, options);
+}
+
+// Atualize a função calcularCaminho para chamar a função exibirGrafoCusto
 function calcularCaminho() {
     const cidadeInicial = document.getElementById("cidadeInicial").value
     const cidadeFinal = document.getElementById("cidadeFinal").value
@@ -143,12 +186,12 @@ function calcularCaminho() {
     const resultado = dijkstra(grafo, cidadeInicial, cidadeFinal)
     const custos = calcularCustosCaminho(resultado.caminho)
 
-    // Exibe a árvore de caminho com os custos individuais
     exibirArvoreCaminho(resultado.caminho, custos)
 
-    // Exibe o total do custo no final
     const totalCustoDiv = document.getElementById("totalCusto")
     totalCustoDiv.innerText = `Custo total: ${resultado.distanciaTotal.toFixed(2)}`
+
+    exibirGrafoCusto(resultado.caminho, custos)
 }
 
 // Função para calcular os custos de cada trecho do caminho

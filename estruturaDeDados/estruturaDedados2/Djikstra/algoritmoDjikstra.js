@@ -5,35 +5,31 @@ const grafo = {
     "Witmarsum": { "Santa Teresinha": 18, "Salete": 103.5, "Dona Ema": 14, "Pouso Redondo": 193.5 },
     "Dona Ema": { "Witmarsum": 14, "José Boiteux": 9, "Salete": 39.6, "Presidente Getúlio": 66 },
     "José Boiteux": { "Dona Ema": 9, "Presidente Getúlio": 40.5 },
-    "Presidente Getúlio": { "José Boiteux": 40.5, "Ibirama": 39.6, "Rio do Oeste": 20, "Taió": 32,  "Dona Ema": 66 },
+    "Presidente Getúlio": { "José Boiteux": 40.5, "Ibirama": 39.6, "Rio do Oeste": 20, "Taió": 32, "Dona Ema": 66 },
     "Ibirama": { "Presidente Getúlio": 39.6, "Lontras": 6 },
     "Lontras": { "Ibirama": 6, "Rio do Sul": 5, "Rio do Oeste": 10 },
-    "Rio do Sul": { "Lontras": 5,  "Rio do Oeste": 8 },
+    "Rio do Sul": { "Lontras": 5, "Rio do Oeste": 8 },
     "Trombudo Central": { "Braço Trombudo": 5 },
     "Braço Trombudo": { "Trombudo Central": 5, "Rio do Oeste": 17 },
     "Pouso Redondo": { "Witmarsum": 193.5, "Rio do Oeste": 69, "Taió": 15, "Salete": 60 },
     "Mirim Doce": { "Taió": 27 },
-    "Taió": { "Salete": 52.8, "Mirim Doce": 27, "Pouso Redondo": 15, "Rio do Oeste": 21,"Presidente Getúlio": 32 },
+    "Taió": { "Salete": 52.8, "Mirim Doce": 27, "Pouso Redondo": 15, "Rio do Oeste": 21, "Presidente Getúlio": 32 },
     "Rio do Oeste": { "Braço Trombudo": 17, "Pouso Redondo": 69, "Taió": 21, "Presidente Getúlio": 20, "Ibirama": 99, "Lontras": 10, "Rio do Sul": 8 }
 }
 
 // Função Inicializar
 function inicializarCidades() {
-    const cidades = Object.keys(grafo)
+    const cidades = Object.keys(grafo);
     const selectInicial = document.getElementById("cidadeInicial")
     const selectFinal = document.getElementById("cidadeFinal")
 
     cidades.forEach(cidade => {
-        let optionInicial = document.createElement("option")
-        optionInicial.value = cidade
-        optionInicial.text = cidade
-        selectInicial.add(optionInicial)
-
-        let optionFinal = document.createElement("option")
-        optionFinal.value = cidade
-        optionFinal.text = cidade
-        selectFinal.add(optionFinal)
-    })
+        let option = document.createElement("option")
+        option.value = cidade
+        option.text = cidade
+        selectInicial.add(option.cloneNode(true));
+        selectFinal.add(option)
+    });
 }
 
 // Função de Dijkstra
@@ -82,7 +78,7 @@ function obterCidadeMaisProxima(filaDePrioridade, distancias) {
     return cidadeMaisProxima
 }
 
-// Função para montar o caminho mais "curto"
+// Função para montar o caminho mais curto
 function construirCaminho(antecessores, cidadeInicial, cidadeFinal, distancias) {
     let caminho = []
     let cidadeAtual = cidadeFinal
@@ -92,44 +88,45 @@ function construirCaminho(antecessores, cidadeInicial, cidadeFinal, distancias) 
         cidadeAtual = antecessores[cidadeAtual]
     }
 
-    caminho.unshift(cidadeInicial)
+    caminho.unshift(cidadeInicial);
     return {
         caminho: caminho,
         distanciaTotal: distancias[cidadeFinal]
-    }
+    };
 }
 
 // Função para exibir o caminho em uma árvore
 function exibirArvoreCaminho(caminho, custos) {
-    const arvoreDiv = document.getElementById("arvoreCaminho");
-    arvoreDiv.innerHTML = ''; // Limpa a árvore anterior
+    const arvoreDiv = document.getElementById("arvoreCaminho")
+    arvoreDiv.innerHTML = '' // Limpa a árvore anterior
 
     caminho.forEach((cidade, index) => {
-        let caminhoItemDiv = document.createElement("div");
-        caminhoItemDiv.classList.add("caminho-item");
+        let caminhoItemDiv = document.createElement("div")
+        caminhoItemDiv.classList.add("caminho-item")
 
-        let cidadeDiv = document.createElement("div");
-        cidadeDiv.classList.add("cidade");
-        cidadeDiv.innerText = cidade;
+        let cidadeDiv = document.createElement("div")
+        cidadeDiv.classList.add("cidade")
+        cidadeDiv.innerText = cidade
 
-        caminhoItemDiv.appendChild(cidadeDiv);
+        caminhoItemDiv.appendChild(cidadeDiv)
 
         if (index < caminho.length - 1) {
-            let linhaDiv = document.createElement("div");
-            linhaDiv.classList.add("linha");
-            caminhoItemDiv.appendChild(linhaDiv);
+            let linhaDiv = document.createElement("div")
+            linhaDiv.classList.add("linha")
+            caminhoItemDiv.appendChild(linhaDiv)
 
-            let custoDiv = document.createElement("div");
-            custoDiv.classList.add("custo-caminho");
-            custoDiv.innerText = `${custos[index]}`;
-            caminhoItemDiv.appendChild(custoDiv);
+            let custoDiv = document.createElement("div")
+            custoDiv.classList.add("custo-caminho")
+            custoDiv.innerText = `${custos[index]}`
+            caminhoItemDiv.appendChild(custoDiv)
         }
 
-        arvoreDiv.appendChild(caminhoItemDiv);
-    });
+        arvoreDiv.appendChild(caminhoItemDiv)
+    })
 }
 
-function exibirGrafoCusto(caminho, custos) {
+// Função para exibir o grafo com custos
+function exibirGrafoCusto(caminho) {
     // Defina as posições fixas para os nós
     const posicoes = {
         "Salete": { x: 80, y: 120 },
@@ -147,81 +144,50 @@ function exibirGrafoCusto(caminho, custos) {
         "Mirim Doce": { x: 150, y: 460 },
         "Taió": { x: 90, y: 300 },
         "Rio do Oeste": { x: 550, y: 500 }
-    }      
+    }
 
     // Prepare os dados para o grafo
-    let nodes = new vis.DataSet([]);
-    let edges = new vis.DataSet([]);
+    let nodes = new vis.DataSet([])
+    let edges = new vis.DataSet([])
 
     // Adiciona todos os nós e arestas do grafo
-    let edgeIds = new Set(); // Conjunto para armazenar IDs únicos de arestas
+    let edgeIds = new Set()
     for (let cidade in grafo) {
-        nodes.add({
-            id: cidade,
-            label: cidade,
-            x: posicoes[cidade]?.x || 0, // Usa posição fixa se definida, senão 0
-            y: posicoes[cidade]?.y || 0  // Usa posição fixa se definida, senão 0
-        });
+        nodes.add({ id: cidade, label: cidade, x: posicoes[cidade]?.x || 0, y: posicoes[cidade]?.y || 0 })
         for (let vizinho in grafo[cidade]) {
-            let edgeId = `${cidade}-${vizinho}`;
+            let edgeId = `${cidade}-${vizinho}`
             if (!edgeIds.has(edgeId)) {
-                edges.add({
-                    id: edgeId, // ID único da aresta
-                    from: cidade,
-                    to: vizinho,
-                    label: `${grafo[cidade][vizinho]}`,
-                    color: '#000000', // Cor padrão para arestas
-                    arrows: 'to'
-                });
-                edgeIds.add(edgeId);
+                edges.add({ id: edgeId, from: cidade, to: vizinho, label: `${grafo[cidade][vizinho]}`, color: '#000000', arrows: 'to' })
+                edgeIds.add(edgeId)
             }
         }
     }
 
     // Destaca o caminho mais curto
     for (let i = 0; i < caminho.length - 1; i++) {
-        const cidadeAtual = caminho[i];
-        const proximaCidade = caminho[i + 1];
-        const edgeId = `${cidadeAtual}-${proximaCidade}`;
-        edges.update({
-            id: edgeId, // Atualiza a aresta com o ID correspondente
-            color: { color: 'red', highlight: 'red' }, // Destaca o caminho mais curto
-            width: 4 // Opcional: aumenta a largura da aresta destacada
-        });
+        const cidadeAtual = caminho[i]
+        const proximaCidade = caminho[i + 1]
+        const edgeId = `${cidadeAtual}-${proximaCidade}`
+        edges.update({ id: edgeId, color: { color: 'red', highlight: 'red' }, width: 4 })
     }
 
     // Configurações do grafo
-    let data = {
-        nodes: nodes,
-        edges: edges
-    };
-    let options = {
-        nodes: {
-            shape: 'dot',
-            size: 20
-        },
-        edges: {
-            width: 2,
-            color: { inherit: true }
-        },
-        physics: {
-            enabled: false // Desativa a física para que as posições sejam fixas
-        }
-    };
+    let data = { nodes: nodes, edges: edges }
+    let options = { nodes: { shape: 'dot', size: 20 }, edges: { width: 2, color: { inherit: true } }, physics: { enabled: false } }
 
     // Cria o grafo
-    let container = document.getElementById('grafoCusto');
-    new vis.Network(container, data, options);
+    let container = document.getElementById('grafoCusto')
+    new vis.Network(container, data, options)
 }
 
-// Atualize a função calcularCaminho para chamar a função exibirGrafoCusto
+// Atualize a função calcularCaminho
 function calcularCaminho() {
     const cidadeInicial = document.getElementById("cidadeInicial").value
     const cidadeFinal = document.getElementById("cidadeFinal").value
 
     if (cidadeInicial === cidadeFinal) {
         alert("A cidade inicial e final devem ser diferentes.")
-        return
+        return;
     }
 
     // Calcula o caminho e os custos
@@ -233,19 +199,12 @@ function calcularCaminho() {
     const totalCustoDiv = document.getElementById("totalCusto")
     totalCustoDiv.innerText = `Custo total: ${resultado.distanciaTotal.toFixed(2)}`
 
-    exibirGrafoCusto(resultado.caminho, custos)
+    exibirGrafoCusto(resultado.caminho)
 }
 
 // Função para calcular os custos de cada trecho do caminho
 function calcularCustosCaminho(caminho) {
-    let custos = []
-    for (let i = 0; i < caminho.length - 1; i++) {
-        const cidadeAtual = caminho[i]
-        const proximaCidade = caminho[i + 1]
-        const custo = grafo[cidadeAtual][proximaCidade]
-        custos.push(custo)
-    }
-    return custos
+    return caminho.slice(0, -1).map((cidadeAtual, i) => grafo[cidadeAtual][caminho[i + 1]])
 }
 
 // Inicializa as cidades ao carregar a página

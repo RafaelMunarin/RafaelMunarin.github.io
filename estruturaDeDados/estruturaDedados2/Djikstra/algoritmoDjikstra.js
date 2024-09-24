@@ -1,3 +1,5 @@
+/* Alunos: Márcio A. Demarchi, Rafael B. Munarin */
+
 // Definição do grafo das cidades e distâncias
 const grafo = {
     "Salete": { "Santa Teresinha": 79.2, "Witmarsum": 103.5, "Taió": 52.8, "Dona Ema": 39.6, "Pouso Redondo": 60 },
@@ -160,7 +162,7 @@ function exibirGrafoCusto(caminho) {
         "Mirim Doce": { x: 150, y: 460 },
         "Taió": { x: 90, y: 300 },
         "Rio do Oeste": { x: 550, y: 500 }
-    };
+    }
 
     // Prepare os dados para o grafo
     let nodes = new vis.DataSet([]) // Conjunto para armazenar os nós

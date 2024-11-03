@@ -1,0 +1,1 @@
+Arquivo de exemplo que vai ter algumas palavras para serem contadas quando executar o npm index.js no prompt de comando já acessando a pasta do projeto

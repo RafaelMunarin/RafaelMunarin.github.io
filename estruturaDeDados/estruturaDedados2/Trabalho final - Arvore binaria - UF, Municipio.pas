@@ -1,5 +1,7 @@
 program ArvoreBinariaUF;
 
+{ALUNOS: Rafael Munarin, Marcion Demarchi}
+
 { Declaração de tipos para nós das árvores de municípios e de UFs }
 type
   PonteiroMunicipio = ^NoMunicipio;       { Ponteiro para o nó de município }
@@ -118,14 +120,14 @@ begin
     if (Arvore^.Esq = nil) and (Arvore^.Dir = nil) then
     begin
       dispose(Arvore);                            { Libera o nó }
-      Arvore := nil;
-      writeln('Município removido com sucesso!');
+      Arvore := nil;                               { A árvore agora aponta para nil, removendo o nó }
+      writeln('Município removido com sucesso!');    { Mensagem de sucesso na remoção }
     end
     else
     begin
-      writeln('Erro: só é possível remover municípios que são folhas!');
+      writeln('Erro: só é possível remover municípios que são folhas!');  { Se não for folha, erro }
       writeln('Estrutura atual da árvore de municípios para essa UF:');
-      MostrarMunicipios(Arvore);
+      MostrarMunicipios(Arvore);                   { Exibe a estrutura atual da árvore de municípios }
     end;
   end;
 end;
@@ -145,13 +147,13 @@ end;
 
 { Variáveis globais e programa principal }
 var
-  ArvoreUFs: PonteiroUF;
-  NomeUF, NomeMunicipio: string;
-  Opcao: integer;
+  ArvoreUFs: PonteiroUF;  { Árvore que armazena todas as UFs }
+  NomeUF, NomeMunicipio: string;  { Variáveis para armazenar o nome da UF e do município }
+  Opcao: integer;  { Variável para armazenar a escolha do usuário no menu }
 begin
-  ArvoreUFs := nil;
+  ArvoreUFs := nil;  { Inicializa a árvore de UFs como vazia }
   repeat
-    ClrScr;
+    ClrScr;  { Limpa a tela antes de exibir o menu }
     writeln('===========================================');
     writeln('           ÁRVORE BINÁRIA DE UFs           ');
     writeln('===========================================');
@@ -164,8 +166,8 @@ begin
     writeln('6 - Sair');
     writeln;
     write('Escolha uma opção: ');
-    readln(Opcao);
-    ClrScr;
+    readln(Opcao);  { Lê a escolha do usuário }
+    ClrScr;  { Limpa a tela após a escolha do usuário }
 
     case Opcao of
       1:
@@ -173,53 +175,53 @@ begin
         writeln('Inserção de UF e Município');
         writeln('----------------------------');
         write('Digite a UF: ');
-        readln(NomeUF);
+        readln(NomeUF);  { Lê o nome da UF }
         write('Digite o município: ');
-        readln(NomeMunicipio);
+        readln(NomeMunicipio);  { Lê o nome do município }
         InserirUF(ArvoreUFs, NomeUF, NomeMunicipio);  { Insere UF e Município na árvore }
-        writeln('Município inserido com sucesso!');
-        readln;
+        writeln('Município inserido com sucesso!');  { Confirma a inserção }
+        readln;  { Aguarda o usuário pressionar Enter para continuar }
       end;
       2:
       begin
         writeln('Árvore de UFs e Municípios');
         writeln('----------------------------');
         MostrarUFsCompleto(ArvoreUFs);               { Exibe toda a árvore de UFs e Municípios }
-        readln;
+        readln;  { Aguarda o usuário pressionar Enter para continuar }
       end;
       3:
       begin
         writeln('Árvore de UFs (somente UFs)');
         writeln('----------------------------');
         MostrarUFsSomente(ArvoreUFs);                { Exibe apenas a árvore de UFs }
-        readln;
+        readln;  { Aguarda o usuário pressionar Enter para continuar }
       end;
       4:
       begin
         writeln('Contagem de Municípios em uma UF');
         writeln('----------------------------');
         write('Digite a UF: ');
-        readln(NomeUF);
+        readln(NomeUF);  { Lê o nome da UF para contar seus municípios }
         if EncontrarUF(ArvoreUFs, NomeUF) <> nil then
-          writeln('A UF ', NomeUF, ' possui ', ContarMunicipios(EncontrarUF(ArvoreUFs, NomeUF)^.ArvoreMunicipios), ' municípios.')
+          writeln('A UF ', NomeUF, ' possui ', ContarMunicipios(EncontrarUF(ArvoreUFs, NomeUF)^.ArvoreMunicipios), ' municípios.')  { Exibe o número de municípios }
         else
-          writeln('UF não encontrada!');
-        readln;
+          writeln('UF não encontrada!');  { Caso a UF não seja encontrada }
+        readln;  { Aguarda o usuário pressionar Enter para continuar }
       end;
       5:
       begin
         writeln('Remoção de Município');
         writeln('----------------------------');
         write('Digite a UF: ');
-        readln(NomeUF);
+        readln(NomeUF);  { Lê o nome da UF }
         write('Digite o município a ser removido: ');
-        readln(NomeMunicipio);
+        readln(NomeMunicipio);  { Lê o nome do município a ser removido }
         if EncontrarUF(ArvoreUFs, NomeUF) <> nil then
-          RemoverMunicipio(EncontrarUF(ArvoreUFs, NomeUF)^.ArvoreMunicipios, NomeMunicipio)
+          RemoverMunicipio(EncontrarUF(ArvoreUFs, NomeUF)^.ArvoreMunicipios, NomeMunicipio)  { Remove o município se a UF for encontrada }
         else
-          writeln('UF não encontrada!');
-        readln;
+          writeln('UF não encontrada!');  { Caso a UF não seja encontrada }
+        readln;  { Aguarda o usuário pressionar Enter para continuar }
       end;
     end;
-  until Opcao = 6;
+  until Opcao = 6;  { O programa termina quando a opção 6 (Sair) é escolhida }
 end.
